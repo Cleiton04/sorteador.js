@@ -1,35 +1,46 @@
-function gernerateNumber(){
-const min =Math.ceil(document.querySelector(".input-min").value)
-  const max =Math.floor(document.querySelector(".input-max").value )
 
- const result=Math.floor(Math.random() * (max - min + 1)) + min;
+const minInput = document.getElementById('min');
+        const maxInput = document.getElementById('max');
+        const btnSortear = document.getElementById('btnSortear');
+        const contagemEl = document.getElementById('contagem');
+        const resultadoEl = document.getElementById('resultado');
 
+        btnSortear.addEventListener('click', sortearComContagem);
 
- const resultadoEl = document.getElementById("resultado");
+        function sortearComContagem() {
+            let min = parseInt(minInput.value);
+            let max = parseInt(maxInput.value);
 
-if (isNaN(min) || isNaN(max)) {
-                resultadoEl.textContent = "Por favor, insira números válidos.";
-                resultadoEl.style.color = "red";
+            // Validação
+            if (isNaN(min) || isNaN(max)) {
+                alert('Preencha os dois números!');
                 return;
+            }
+            if (min > max) [min, max] = [max, min];
 
+            // Reset
+            resultadoEl.textContent = '';
+            btnSortear.disabled = true;
+            let contador = 10;
+            contagemEl.textContent = contador;
 
-
-}
-
-if (min > max) {
-                resultadoEl.textContent = "O valor mínimo não pode ser maior que o máximo.";
-                resultadoEl.style.color = "red";
-                return;
-
-
-
-}
-const numeroSorteado = Math.floor(Math.random() * (max - min + 1)) + min;
-
-resultadoEl.textContent = `Número sorteado: ${numeroSorteado}`;
-            resultadoEl.style.color = "green";
-
-}
+            // Contagem regressiva
+            const intervalo = setInterval(() => {
+                contador--;
+                if (contador > 0) {
+                    contagemEl.textContent = contador;
+                } else {
+                    clearInterval(intervalo);
+                    contagemEl.textContent = '';
+                    // Sorteio final
+                    const numeroSorteado = Math.floor(Math.random() * (max - min + 1)) + min;
+                  resultadoEl.textContent =  `🎉 ${numeroSorteado}`;
+                    btnSortear.disabled = false;
+                }
+            }, 1000);
+        }
+    
+        
 
 
 

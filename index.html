@@ -11,21 +11,20 @@
 <title>sorteador</title>
 </head>
 <body>
-    <main class="firts-sorteio">
-    <section>
-<img src="./assets/devsorteio.png"  alt=" meu-sorteador">
-    <h1>devsorteio</h1>
-    <p id="resultado"></p>
-    <p >sortear um número</p>
-    </section>
-    <div class="second-part">
-<input class="input-min" type="number" placeholder="entre" >
-<input class="input-max"  type="number" placeholder="e">
-<br>
-<button onclick="gernerateNumber()">sortear</button>    
+     <img class="dice"  src="./assets/devsorteio.png">
+    
+    <p class="subtitulo">sortear um número</p>
 
+    <div class="inputs">
+        <input type="number" id="min" placeholder="entre">
+        <input type="number" id="max" placeholder="e">
     </div>
-    </main>
+
+    <button id="btnSortear">sortear</button>
+
+    <div class="contagem" id="contagem"></div>
+    <div class="resultado" id="resultado"></div>
+   
 </body>
 <script src="./javascript.js"></script>
 </html>
