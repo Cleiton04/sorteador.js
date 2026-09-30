@@ -1,46 +1,49 @@
 
 const minInput = document.getElementById('min');
-        const maxInput = document.getElementById('max');
-        const btnSortear = document.getElementById('btnSortear');
-        const contagemEl = document.getElementById('contagem');
-        const resultadoEl = document.getElementById('resultado');
+const maxInput = document.getElementById('max');
+const btnSortear = document.getElementById('btnSortear');
+const contagemEl = document.getElementById('contagem');
+const resultadoEl = document.getElementById('resultado');
 
-        btnSortear.addEventListener('click', sortearComContagem);
+btnSortear.addEventListener('click', sortearComContagem);
 
-        function sortearComContagem() {
-            let min = parseInt(minInput.value);
-            let max = parseInt(maxInput.value);
+function sortearComContagem() {
+    let min = parseInt(minInput.value);
+    let max = parseInt(maxInput.value);
 
-            // Validação
-            if (isNaN(min) || isNaN(max)) {
-                alert('Preencha os dois números!');
-                return;
-            }
-            if (min > max) [min, max] = [max, min];
+    // Validação
+    if (isNaN(min) || isNaN(max)) {
+        alert('Preencha os dois números!');
+        return;
+    }
+    if (min > max)
 
-            // Reset
-            resultadoEl.textContent = '';
-            btnSortear.disabled = true;
-            let contador = 10;
+        // Reset
+        resultadoEl.textContent = '';
+    else {
+        resultadoEl.textContent = "numero não pode ser maior q o mínimo"
+        resultadoEl.css.color = "red"
+    }
+    let contador = 10;
+    contagemEl.textContent = contador;
+
+    // Contagem regressiva
+    const intervalo = setInterval(() => {
+        contador--;
+        if (contador > 0) {
             contagemEl.textContent = contador;
-
-            // Contagem regressiva
-            const intervalo = setInterval(() => {
-                contador--;
-                if (contador > 0) {
-                    contagemEl.textContent = contador;
-                } else {
-                    clearInterval(intervalo);
-                    contagemEl.textContent = '';
-                    // Sorteio final
-                    const numeroSorteado = Math.floor(Math.random() * (max - min + 1)) + min;
-                  resultadoEl.textContent =  `🎉 ${numeroSorteado}`;
-                    btnSortear.disabled = false;
-                }
-            }, 1000);
+        } else {
+            clearInterval(intervalo);
+            contagemEl.textContent = '';
+            // Sorteio final
+            const numeroSorteado = Math.floor(Math.random() * (max - min + 1)) + min;
+            resultadoEl.textContent = `🎉 ${numeroSorteado}`;
+            btnSortear.disabled = false;
         }
-    
-        
+    }, 1000);
+}
+
+
 
 
 
